@@ -17,6 +17,8 @@ public class PlayerControl : MonoBehaviour {
 	private float dashCounter;
 	private float dashCoolCounter;
 
+	public GameObject bullet; //temp
+	public Transform spawnPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -60,6 +62,19 @@ public class PlayerControl : MonoBehaviour {
 			dashCoolCounter -= Time.deltaTime;
 		}
 
-		
+		// deals iwht player rotation
+		Vector3 direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward); //rotates player to face the mouse
+
+		if (Input.GetKeyDown(KeyCode.J))
+		{
+			Shoot(); 
+		}
 	}
+	public void Shoot()
+	{
+		Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
+	}
+
 }

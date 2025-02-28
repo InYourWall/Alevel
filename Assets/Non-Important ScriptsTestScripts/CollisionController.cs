@@ -22,7 +22,7 @@ public class CollisionController : MonoBehaviour {
 
 	private void OnCollisionExit2D(Collision2D collision) {
 
-		if (collision.gameObject.name == "box")
+		if (collision.gameObject.name == "boax")
 		{
 			Debug.Log("Exit");
 		}
